@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 460px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus {
+            border-color: #4a90d9;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            outline: none;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 24px;
+            margin-top: 8px;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: 400;
+            font-size: 16px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #4a90d9;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: 400;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #4a90d9;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #3a7bc8;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Анкета</h1>
+        <form id="anketa" action="https://formsubmit.co/ars.kirydashov@gmail.com" method="POST">
+            <div class="form-group">
+                <label for="firstName">Имя</label>
+                <input type="text" id="firstName" name="firstName" required placeholder="Введите имя">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Фамилия</label>
+                <input type="text" id="lastName" name="lastName" required placeholder="Введите фамилию">
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required placeholder="example@mail.ru">
+            </div>
+            <div class="form-group">
+                <label>Пол</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="gender" value="male" required>
+                        Мужской
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="female">
+                        Женский
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="age">Возраст</label>
+                <select id="age" name="age" required>
+                    <option value="" disabled selected>Выберите возраст</option>
+                    <option value="under18">До 18</option>
+                    <option value="18-24">18–24</option>
+                    <option value="25-34">25–34</option>
+                    <option value="35-44">35–44</option>
+                    <option value="45-54">45–54</option>
+                    <option value="55-64">55–64</option>
+                    <option value="65+">65 и старше</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Образование</label>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="education" value="secondary">
+                        Среднее
+                    </label>
+                    <label>
+                        <input type="checkbox" name="education" value="secondary_full">
+                        Среднее полное
+                    </label>
+                    <label>
+                        <input type="checkbox" name="education" value="bachelor">
+                        Высшее (бакалавр)
+                    </label>
+                    <label>
+                        <input type="checkbox" name="education" value="master">
+                        Высшее (магистр)
+                    </label>
+                </div>
+            </div>
+            <input type="hidden" name="_subject" value="Новая анкета">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="">
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+
+</body>
+</html>
