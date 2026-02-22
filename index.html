@@ -137,7 +137,7 @@
 <body>
     <div class="form-container">
         <h1>Анкета</h1>
-        <form id="anketa" action="https://formsubmit.co/ars.kirydashov@gmail.com" method="POST">
+        <form id="anketa">
             <div class="form-group">
                 <label for="firstName">Имя</label>
                 <input type="text" id="firstName" name="firstName" required placeholder="Введите имя">
@@ -197,12 +197,46 @@
                     </label>
                 </div>
             </div>
-            <input type="hidden" name="_subject" value="Новая анкета">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="">
             <button type="submit">Отправить</button>
         </form>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        emailjs.init('pZ1wACIxRgyJWFBH9');
+
+        document.getElementById('anketa').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var checkedBoxes = document.querySelectorAll('input[name="education"]:checked');
+            var education = Array.from(checkedBoxes).map(function(cb) { return cb.parentElement.textContent.trim(); }).join(', ') || 'Не указано';
+
+            var params = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                gender: document.querySelector('input[name="gender"]:checked').parentElement.textContent.trim(),
+                age: document.getElementById('age').options[document.getElementById('age').selectedIndex].text,
+                education: education
+            };
+
+            var btn = this.querySelector('button');
+            btn.disabled = true;
+            btn.textContent = 'Отправка...';
+
+            emailjs.send('service_jrdxbw4', 'template_jb9zv3v', params)
+                .then(function() {
+                    alert('Спасибо! Анкета успешно отправлена.');
+                    btn.textContent = 'Отправить';
+                    btn.disabled = false;
+                    document.getElementById('anketa').reset();
+                })
+                .catch(function(error) {
+                    alert('Ошибка отправки: ' + JSON.stringify(error));
+                    btn.textContent = 'Отправить';
+                    btn.disabled = false;
+                });
+        });
+    </script>
 </body>
 </html>
